@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orbit Desk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <main class="workspace">
+        <header class="topbar panel">
+          <div class="brand-block">
+            <div class="brand-mark">O</div>
+            <div>
+              <p class="eyebrow">Vertex AI + MCP</p>
+              <h1>Orbit Desk</h1>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <div class="hero-badge">Live workflow execution</div>
+            <button id="panelToggle" class="ghost-button" type="button" aria-expanded="true">
+              Hide panel
+            </button>
+          </div>
+        </header>
+
+        <section class="chat-panel panel">
+          <div class="chat-header">
+            <div>
+              <p class="eyebrow">Multi-Agent Productivity Assistant</p>
+              <h2>Plan, schedule, save, and follow up from one conversation.</h2>
+            </div>
+            <div class="quick-prompts">
+              <button class="prompt-chip" data-prompt="Schedule a team sync tomorrow at 10 AM, create action items, and save notes.">
+                Team sync
+              </button>
+              <button class="prompt-chip" data-prompt="Plan a client onboarding call next Tuesday, track follow-ups, and store the briefing summary.">
+                Onboarding
+              </button>
+              <button class="prompt-chip" data-prompt="Create a weekly project review, assign prep tasks, and save the agenda.">
+                Weekly review
+              </button>
+            </div>
+          </div>
+
+          <section id="chatWindow" class="chat-window">
+            <article class="message assistant">
+              <div class="avatar">AI</div>
+              <div class="bubble">
+                <p class="message-label">Orbit Desk</p>
+                <p>
+                  Ask me to plan meetings, create tasks, or store notes. I will coordinate the right agents and tools for you.
+                </p>
+              </div>
+            </article>
+          </section>
+
+          <form id="chatForm" class="composer">
+            <textarea
+              id="requestInput"
+              name="request"
+              rows="2"
+              placeholder="Plan a sprint kickoff, create follow-up tasks, and save the meeting notes."
+            ></textarea>
+            <button id="submitButton" type="submit">Send</button>
+          </form>
+        </section>
+      </main>
+
+      <aside id="sidePanel" class="side-panel panel is-open">
+        <div class="side-panel-body">
+          <section class="panel-section">
+            <div class="panel-title-row">
+              <h2>System State</h2>
+              <button id="refreshButton" class="ghost-button" type="button">Refresh</button>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <span>Tasks</span>
+                <strong id="taskCount">0</strong>
+              </div>
+              <div class="stat-card">
+                <span>Events</span>
+                <strong id="eventCount">0</strong>
+              </div>
+              <div class="stat-card">
+                <span>Notes</span>
+                <strong id="noteCount">0</strong>
+              </div>
+              <div class="stat-card">
+                <span>Runs</span>
+                <strong id="runCount">0</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel-section">
+            <h2>Recent Records</h2>
+            <div class="record-groups">
+              <div>
+                <h3>Tasks</h3>
+                <ul id="tasksList" class="record-list"></ul>
+              </div>
+              <div>
+                <h3>Events</h3>
+                <ul id="eventsList" class="record-list"></ul>
+              </div>
+              <div>
+                <h3>Notes</h3>
+                <ul id="notesList" class="record-list"></ul>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="user-dock">
+          <label class="field">
+            <span>User ID</span>
+            <input id="userIdInput" name="user_id" type="text" value="demo-user" />
+          </label>
+        </div>
+      </aside>
+    </div>
+
+    <template id="userMessageTemplate">
+      <article class="message user">
+        <div class="bubble"></div>
+      </article>
+    </template>
+
+    <template id="assistantMessageTemplate">
+      <article class="message assistant">
+        <div class="avatar">AI</div>
+        <div class="bubble">
+          <p class="message-label">Orbit Desk</p>
+          <div class="message-content"></div>
+        </div>
+      </article>
+    </template>
+
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
